@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# File: wc.py
+# File: word_count_program.py
 """ Reads a file and returns the number of lines, words,
     and characters - similar to the UNIX wc utility
 """
@@ -17,7 +17,7 @@ def main():
     parser = argparse.ArgumentParser(usage=__doc__)
     parser.add_argument("-c", "--characters",
                   action="store_true", dest="chars", default=False,
-                  help="display number of characers")
+                  help="display number of characters")
     parser.add_argument("-w", "--words",
                   action="store_true", dest="words", default=False,
                   help="display number of words")
@@ -40,20 +40,20 @@ def main():
             if len(line) > longest_line:
                 longest_line = len(line)
 
-    default_args = any([getattr(args, _) for _ in ('chars', 'words', 'lines')])
+    default_args = any([getattr(args, _) for _ in ('chars', 'words', 'lines', 'longest')])
 
     if not default_args:
         args.chars = args.lines = args.words = True
-  
+
     if args.lines:
-        print(f" {line_count:3}", end="")
+        print(f"{line_count:3}", end=" ")
     if args.words:
-        print(f" {word_count:4}", end="")
+        print(f"{word_count:4}", end=" ")
     if args.chars:
-        print(f" {char_count:4}", end="")
+        print(f"{char_count:4}", end=" ")
     if args.longest:
-        print(f' {longest_line}')
+        print(f'{longest_line}', end=" ")
+    print(f'{filename}')
 
 if __name__ == '__main__':
     main()
-
